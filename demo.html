@@ -68,32 +68,33 @@
             demoContainer.style.gap = '10px';
             demoContainer.style.maxWidth = '200px';
 
-            // Demo buttons
-            const btnCard = window.CosmicUI.createButton({
+            // Demo buttons - Use the main CosmicUI class from the UMD exports
+            const CosmicUILib = window.CosmicUI.CosmicUI || window.CosmicUI.default || window.CosmicUI;
+            const btnCard = CosmicUILib.createButton({
                 text: 'Show Card Demo',
                 variant: 'secondary',
                 onClick: () => showCardDemo(),
             });
 
-            const btnModal = window.CosmicUI.createButton({
+            const btnModal = CosmicUILib.createButton({
                 text: 'Show Modal Demo',
                 variant: 'primary',
                 onClick: () => showModalDemo(),
             });
 
-            const btnError = window.CosmicUI.createButton({
+            const btnError = CosmicUILib.createButton({
                 text: 'Show Error Demo',
                 variant: 'danger',
                 onClick: () => showErrorDemo(),
             });
 
-            const btnInfo = window.CosmicUI.createButton({
+            const btnInfo = CosmicUILib.createButton({
                 text: 'Show Info Demo',
                 variant: 'default',
                 onClick: () => showInfoDemo(),
             });
 
-            const btnTag = window.CosmicUI.createButton({
+            const btnTag = CosmicUILib.createButton({
                 text: 'Show Tag Demo',
                 variant: 'secondary',
                 onClick: () => showTagDemo(),
@@ -109,7 +110,8 @@
         }
 
         function showCardDemo() {
-            const card = window.CosmicUI.createCard({
+            const CosmicUILib = window.CosmicUI.CosmicUI || window.CosmicUI.default || window.CosmicUI;
+            const card = CosmicUILib.createCard({
                 title: 'Demo Card',
                 content: '<p>This is a <strong>cosmic-themed card</strong> with:</p><ul><li>Animated gradient borders</li><li>SVG-based rendering</li><li>Hover effects</li></ul>',
             });
@@ -131,7 +133,8 @@
         }
 
         function showModalDemo() {
-            const modal = window.CosmicUI.createModal({
+            const CosmicUILib = window.CosmicUI.CosmicUI || window.CosmicUI.default || window.CosmicUI;
+            const modal = CosmicUILib.createModal({
                 title: 'Demo Modal',
                 content: '<p>This is a <strong>cosmic-themed modal</strong> with:</p><ul><li>Backdrop blur effect</li><li>Animated borders</li><li>Responsive design</li><li>Button array support</li></ul>',
                 buttons: [
@@ -140,15 +143,17 @@
                 ],
             });
 
-            window.CosmicUI.showModal(modal);
+            CosmicUILib.showModal(modal);
         }
 
         function showErrorDemo() {
-            window.CosmicUI.showError('Demo Error', 'This is a demonstration error message with cosmic styling!');
+            const CosmicUILib = window.CosmicUI.CosmicUI || window.CosmicUI.default || window.CosmicUI;
+            CosmicUILib.showError('Demo Error', 'This is a demonstration error message with cosmic styling!');
         }
 
         function showInfoDemo() {
-            const info = window.CosmicUI.createInfo({
+            const CosmicUILib = window.CosmicUI.CosmicUI || window.CosmicUI.default || window.CosmicUI;
+            const info = CosmicUILib.createInfo({
                 title: 'Mission Briefing',
                 titleColor: 'golden-red',
                 content: '<p>This is an <strong>info popup</strong> with:</p><ul><li>No buttons required</li><li>Multiple title color themes</li><li>Click overlay to close</li></ul><p><em>Click anywhere outside to close.</em></p>',
@@ -158,6 +163,7 @@
         }
 
         function showTagDemo() {
+            const CosmicUILib = window.CosmicUI.CosmicUI || window.CosmicUI.default || window.CosmicUI;
             // Create multiple tags
             const positions = [
                 { top: '20%', left: '70%', flipped: false },
@@ -166,7 +172,7 @@
             ];
 
             positions.forEach((pos, index) => {
-                const tag = window.CosmicUI.createTag({
+                const tag = CosmicUILib.createTag({
                     title: 'TARGET ACQUIRED',
                     content: `<div style="padding: 10px;"><h4>Target ${index + 1}</h4><p><strong>Status:</strong> LOCKED</p><p><strong>Threat:</strong> ${['HIGH', 'MEDIUM', 'LOW'][index]}</p></div>`,
                     flipped: pos.flipped,
@@ -197,7 +203,7 @@
 
             // Show instruction
             setTimeout(() => {
-                window.CosmicUI.showNotification('Tag Demo', 'Three target tags deployed! Click them to dismiss or wait 8 seconds.');
+                CosmicUILib.showNotification('Tag Demo', 'Three target tags deployed! Click them to dismiss or wait 8 seconds.');
             }, 500);
         }
 
