@@ -1,5 +1,19 @@
 # Cosmic UI Lite
 
+[![npm version](https://img.shields.io/npm/v/cosmic-ui-lite?style=for-the-badge&logo=npm&color=00d4ff)](https://www.npmjs.com/package/cosmic-ui-lite)
+[![npm downloads](https://img.shields.io/npm/dm/cosmic-ui-lite?style=for-the-badge&logo=npm&color=ff6b35)](https://www.npmjs.com/package/cosmic-ui-lite)
+[![GitHub release](https://img.shields.io/github/v/release/fuR-Gaming/cosmic-ui-lite?style=for-the-badge&logo=github&color=00ff88)](https://github.com/fuR-Gaming/cosmic-ui-lite/releases)
+[![License](https://img.shields.io/github/license/fuR-Gaming/cosmic-ui-lite?style=for-the-badge&color=ffaa00)](https://github.com/fuR-Gaming/cosmic-ui-lite/blob/main/LICENSE)
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vanilla JS](https://img.shields.io/badge/Vanilla%20JS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Zero Dependencies](https://img.shields.io/badge/Zero%20Dependencies-00d4ff?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/cosmic-ui-lite)
+[![Game Ready](https://img.shields.io/badge/Game%20Ready-ff6b35?style=for-the-badge&logo=gamepad&logoColor=white)](https://github.com/fuR-Gaming/cosmic-ui-lite/wiki/Game-Integration)
+
+[![Build Status](https://img.shields.io/github/actions/workflow/status/fuR-Gaming/cosmic-ui-lite/ci.yml?style=for-the-badge&logo=github-actions)](https://github.com/fuR-Gaming/cosmic-ui-lite/actions)
+[![Wiki](https://img.shields.io/badge/Wiki-Documentation-00ff88?style=for-the-badge&logo=gitbook&logoColor=white)](https://github.com/fuR-Gaming/cosmic-ui-lite/wiki)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/cosmic-ui-lite?style=for-the-badge&logo=webpack&color=purple)](https://bundlephobia.com/package/cosmic-ui-lite)
+
 A lightweight, futuristic, space-themed UI component library built with TypeScript and vanilla JavaScript. Features SVG-based components with animated gradients, cosmic effects, and responsive design.
 
 > 📸 **See the [Visual Showcase](#-visual-showcase) below for component screenshots and examples!**
@@ -117,59 +131,63 @@ cosmic-ui-lite/
     └── screenshot-cosmic-tag.png
 ```
 
-## 🚀 Quick Start
+## 📦 Installation
 
-### 1. Build the Library
+### NPM (Recommended)
 
 ```bash
-npm run build
+npm install cosmic-ui-lite
 ```
-
-This generates multiple output formats in the `dist/` directory.
-
-### 2. Import the Library
 
 ```typescript
-// Using ES modules (recommended)
-import { CosmicUI } from './dist/index.esm.js';
-
-// Using CommonJS
-const { CosmicUI } = require('./dist/index.cjs.js');
-
-// Using UMD (browser)
-// Include <script src="./dist/index.umd.js"></script> in HTML
-// Then use: const { CosmicUI } = window.CosmicUILite;
+import { CosmicUI } from 'cosmic-ui-lite';
+import 'cosmic-ui-lite/dist/cosmic-ui.css';
 ```
 
-### 3. Include the CSS
+### CDN (Coming Soon)
 
 ```html
-<link rel="stylesheet" href="./dist/cosmic-ui.css">
+<!-- Will be available soon -->
+<script src="https://unpkg.com/cosmic-ui-lite@1.0.0/dist/index.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/cosmic-ui-lite@1.0.0/dist/cosmic-ui.css">
 ```
 
-### 4. Create Components
+### Source Build
+
+```bash
+git clone https://github.com/fuR-Gaming/cosmic-ui-lite.git
+cd cosmic-ui-lite && npm install && npm run build
+```
+
+## 🚀 Quick Example
 
 ```typescript
-// Create a button
+// 1. Install and import
+import { CosmicUI } from 'cosmic-ui-lite';
+import 'cosmic-ui-lite/dist/cosmic-ui.css';
+
+// 2. Create cosmic components
 const button = CosmicUI.createButton({
   text: 'Launch Sequence',
   variant: 'primary',
-  onClick: () => console.log('Button clicked!')
+  onClick: () => console.log('🚀 Launched!')
 });
 
-// Create a modal
 const modal = CosmicUI.createModal({
   title: 'Mission Control',
   content: 'Ready for deployment?',
   buttons: [
     { text: 'Cancel', variant: 'secondary' },
-    { text: 'Deploy', variant: 'primary', onClick: () => deploy() }
+    { text: 'Deploy', variant: 'primary', onClick: () => console.log('Deployed!') }
   ]
 });
 
-// Show the modal
+// 3. Add to your app
+document.body.appendChild(button);
 CosmicUI.showModal(modal);
 ```
+
+**🎮 Perfect for games, ⚡ zero dependencies, 📱 mobile-ready!**
 
 ## 📖 Component Documentation
 
