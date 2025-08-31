@@ -66,3 +66,7 @@ temp/
 
 # Rollup cache
 .rollup.cache/
+
+# Temporary wiki clone directory
+cosmic-ui-lite.wiki/
+temp-wiki/
