@@ -66,10 +66,3 @@ temp/
 
 # Rollup cache
 .rollup.cache/
-
-# Old files from restructuring
-cosmicUI.ts
-cosmicDemo.ts
-types.ts
-cosmic-ui.css
-index.ts
