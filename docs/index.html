@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmic UI Lite - Live Demo</title>
     <meta name="description" content="Interactive demo of Cosmic UI Lite - A lightweight, futuristic, space-themed UI component library">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cosmic-ui-lite@latest/dist/cosmic-ui.css">
+    <link rel="stylesheet" href="https://unpkg.com/cosmic-ui-lite@latest/dist/cosmic-ui.css" onerror="this.href='https://cdn.jsdelivr.net/npm/cosmic-ui-lite@1/dist/cosmic-ui.css'">
     <style>
         body {
             margin: 0;
@@ -205,6 +205,18 @@
                 <div class="stat-label">TypeScript</div>
             </div>
         </div>
+
+        <!-- CDN Error Message -->
+        <div id="cdn-error" style="display: none; background: rgba(255, 107, 53, 0.2); border: 1px solid #ff6b35; padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center;">
+            <h3 style="color: #ff6b35;">⚠️ Demo Loading Issue</h3>
+            <p>The Cosmic UI library couldn't be loaded from CDN. This might be due to:</p>
+            <ul style="text-align: left; display: inline-block;">
+                <li>Network connectivity issues</li>
+                <li>CDN temporary unavailability</li>
+                <li>Content blocking by browser security</li>
+            </ul>
+            <p>Try refreshing the page or check the <a href="https://github.com/fuR-Gaming/cosmic-ui-lite" style="color: #00d4ff;">GitHub repository</a> for local setup instructions.</p>
+        </div>
     </div>
 
     <div class="demo-container">
@@ -312,10 +324,30 @@ import 'cosmic-ui-lite/dist/cosmic-ui.css';</pre>
         </p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/cosmic-ui-lite@latest/dist/index.umd.js">
+    <script src="https://unpkg.com/cosmic-ui-lite@latest/dist/index.umd.js" onerror="loadFallback()"></script>
     <script>
-        // Initialize CosmicUI from the global object
-        const { CosmicUI } = window.CosmicUILite;
+        // Fallback CDN loading
+        function loadFallback() {
+            console.warn('Primary CDN failed, trying fallback...');
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/cosmic-ui-lite@1/dist/index.umd.js';
+            script.onerror = () => {
+                console.error('CDN loading failed. Please check your internet connection or NPM package availability.');
+                document.getElementById('cdn-error').style.display = 'block';
+            };
+            document.head.appendChild(script);
+        }
+
+        // Wait for CosmicUI to load with better error handling
+        function initializeDemo() {
+            if (typeof window.CosmicUILite === 'undefined') {
+                console.error('CosmicUI not loaded. Retrying...');
+                setTimeout(initializeDemo, 1000);
+                return;
+            }
+            
+            // Initialize CosmicUI from the global object
+            const { CosmicUI } = window.CosmicUILite;
         
         // Demo data
         const buttonVariants = [
@@ -553,6 +585,12 @@ import 'cosmic-ui-lite/dist/cosmic-ui.css';</pre>
             }
         `;
         document.head.appendChild(style);
+        }
+
+        // Initialize demo when page loads
+        window.addEventListener('load', () => {
+            setTimeout(initializeDemo, 100);
+        });
     </script>
 </body>
 </html>
