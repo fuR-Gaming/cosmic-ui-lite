@@ -46,7 +46,7 @@
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "dev": "npm run build:watch",
-    "demo": "npm run build && node demo.js",
+    "demo": "npm run build && open demo.html",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run clean && npm run build"
   },

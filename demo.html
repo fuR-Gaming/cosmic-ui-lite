@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic UI Lite - Demo</title>
+    <link rel="stylesheet" href="./dist/cosmic-ui.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0a0a0a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .demo-header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e, #2a2a4e);
+        }
+        
+        .demo-header h1 {
+            color: #00d4ff;
+            font-size: 2.5rem;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            margin: 0;
+        }
+        
+        .demo-header p {
+            color: #ffffff;
+            margin: 10px 0 0 0;
+            opacity: 0.8;
+        }
+        
+        .demo-content {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1>🚀 COSMIC UI LITE</h1>
+        <p>Interactive Demo - Click the buttons to test components</p>
+    </div>
+    
+    <div class="demo-content">
+        <p>Demo controls will appear in the top-left corner</p>
+    </div>
+
+    <script type="module">
+        import { CosmicUI } from './dist/index.esm.js';
+
+        /**
+         * Creates a demo UI to showcase cosmic components
+         */
+        function createCosmicDemo() {
+            // Create demo container
+            const demoContainer = document.createElement('div');
+            demoContainer.style.position = 'fixed';
+            demoContainer.style.top = '20px';
+            demoContainer.style.left = '20px';
+            demoContainer.style.zIndex = '1000';
+            demoContainer.style.display = 'flex';
+            demoContainer.style.flexDirection = 'column';
+            demoContainer.style.gap = '10px';
+            demoContainer.style.maxWidth = '200px';
+
+            // Demo buttons
+            const btnCard = CosmicUI.createButton({
+                text: 'Show Card Demo',
+                variant: 'secondary',
+                onClick: () => showCardDemo(),
+            });
+
+            const btnModal = CosmicUI.createButton({
+                text: 'Show Modal Demo',
+                variant: 'primary',
+                onClick: () => showModalDemo(),
+            });
+
+            const btnError = CosmicUI.createButton({
+                text: 'Show Error Demo',
+                variant: 'danger',
+                onClick: () => showErrorDemo(),
+            });
+
+            const btnInfo = CosmicUI.createButton({
+                text: 'Show Info Demo',
+                variant: 'default',
+                onClick: () => showInfoDemo(),
+            });
+
+            const btnTag = CosmicUI.createButton({
+                text: 'Show Tag Demo',
+                variant: 'secondary',
+                onClick: () => showTagDemo(),
+            });
+
+            demoContainer.appendChild(btnCard);
+            demoContainer.appendChild(btnModal);
+            demoContainer.appendChild(btnError);
+            demoContainer.appendChild(btnInfo);
+            demoContainer.appendChild(btnTag);
+
+            document.body.appendChild(demoContainer);
+        }
+
+        function showCardDemo() {
+            const card = CosmicUI.createCard({
+                title: 'Demo Card',
+                content: '<p>This is a <strong>cosmic-themed card</strong> with:</p><ul><li>Animated gradient borders</li><li>SVG-based rendering</li><li>Hover effects</li></ul>',
+            });
+
+            card.style.position = 'fixed';
+            card.style.top = '50%';
+            card.style.left = '50%';
+            card.style.transform = 'translate(-50%, -50%)';
+            card.style.zIndex = '9999';
+
+            document.body.appendChild(card);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (card.parentNode) {
+                    card.parentNode.removeChild(card);
+                }
+            }, 5000);
+        }
+
+        function showModalDemo() {
+            const modal = CosmicUI.createModal({
+                title: 'Demo Modal',
+                content: '<p>This is a <strong>cosmic-themed modal</strong> with:</p><ul><li>Backdrop blur effect</li><li>Animated borders</li><li>Responsive design</li><li>Button array support</li></ul>',
+                buttons: [
+                    { text: 'Cancel', variant: 'secondary' },
+                    { text: 'Confirm', variant: 'primary', onClick: () => alert('Confirmed!') },
+                ],
+            });
+
+            CosmicUI.showModal(modal);
+        }
+
+        function showErrorDemo() {
+            CosmicUI.showError('Demo Error', 'This is a demonstration error message with cosmic styling!');
+        }
+
+        function showInfoDemo() {
+            const info = CosmicUI.createInfo({
+                title: 'Mission Briefing',
+                titleColor: 'golden-red',
+                content: '<p>This is an <strong>info popup</strong> with:</p><ul><li>No buttons required</li><li>Multiple title color themes</li><li>Click overlay to close</li></ul><p><em>Click anywhere outside to close.</em></p>',
+            });
+
+            document.body.appendChild(info);
+        }
+
+        function showTagDemo() {
+            // Create multiple tags
+            const positions = [
+                { top: '20%', left: '70%', flipped: false },
+                { top: '40%', left: '60%', flipped: true },
+                { top: '60%', left: '80%', flipped: false },
+            ];
+
+            positions.forEach((pos, index) => {
+                const tag = CosmicUI.createTag({
+                    title: 'TARGET ACQUIRED',
+                    content: `<div style="padding: 10px;"><h4>Target ${index + 1}</h4><p><strong>Status:</strong> LOCKED</p><p><strong>Threat:</strong> ${['HIGH', 'MEDIUM', 'LOW'][index]}</p></div>`,
+                    flipped: pos.flipped,
+                });
+
+                tag.style.position = 'fixed';
+                tag.style.top = pos.top;
+                tag.style.left = pos.left;
+                tag.style.zIndex = '9998';
+                tag.style.cursor = 'pointer';
+
+                // Click to remove
+                tag.addEventListener('click', () => {
+                    if (tag.parentNode) {
+                        tag.parentNode.removeChild(tag);
+                    }
+                });
+
+                // Auto-remove after 8 seconds
+                setTimeout(() => {
+                    if (tag.parentNode) {
+                        tag.parentNode.removeChild(tag);
+                    }
+                }, 8000);
+
+                document.body.appendChild(tag);
+            });
+
+            // Show instruction
+            setTimeout(() => {
+                CosmicUI.showNotification('Tag Demo', 'Three target tags deployed! Click them to dismiss or wait 8 seconds.');
+            }, 500);
+        }
+
+        // Initialize demo when page loads
+        document.addEventListener('DOMContentLoaded', createCosmicDemo);
+        
+        // Also run immediately in case DOM is already loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', createCosmicDemo);
+        } else {
+            createCosmicDemo();
+        }
+    </script>
+</body>
+</html>
