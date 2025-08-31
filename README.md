@@ -23,6 +23,17 @@ I needed a cosmic/sci-fi style UI for my game project, and I found [cosmic-ui](h
 - **Modular Architecture**: Individual components with shared utilities
 - **Cosmic Theme**: Futuristic space-inspired visual design
 
+## ⚠️ Constraints & Limitations
+
+While Cosmic UI Lite is designed for simplicity and game-ready performance, there are some design trade-offs to be aware of:
+
+### SVG Border Scaling
+The SVG borders are scaled as a single piece, which means on components with unusual aspect ratios (especially tall/narrow or wide/short), the borders may appear over-scaled or distorted. This is similar to how image scaling works without nine-slice functionality.
+
+**Technical Note**: This could be solved by implementing a nine-slice system (similar to Unity's NineSlicedSprite or Pixi.js nine-slice textures) that scales corners, edges, and center independently. However, this would significantly increase complexity and goes against the project's goal of remaining lightweight and simple.
+
+**Recommendation**: For best visual results, use components within reasonable aspect ratios. The default sizing and responsive breakpoints are optimized for typical UI use cases.
+
 ## 📦 Components
 
 ### Core Components
@@ -71,39 +82,71 @@ The components feature:
 ## 📁 File Structure
 
 ```
-cosmic-ui/
-├── README.md           # This file
-├── cosmicUI.ts        # Main component library
-├── cosmicDemo.ts      # Demo/testing utilities  
-├── cosmic-ui.css      # Styles and animations
-├── types.ts           # TypeScript type definitions
-├── screenshots/       # Component screenshots
-│   ├── screenshot-cosmic-modal.png
-│   ├── screenshot-cosmic-info.png
-│   ├── screenshot-cosmic-card.png
-│   └── screenshot-cosmic-tag.png
-└── package.json       # Package metadata
+cosmic-ui-lite/
+├── README.md               # This file
+├── package.json           # Package configuration
+├── rollup.config.js       # Build configuration
+├── src/                   # Source code
+│   ├── index.ts           # Main entry point
+│   ├── components/        # Individual component classes
+│   │   ├── CosmicButton.ts
+│   │   ├── CosmicModal.ts
+│   │   ├── CosmicCard.ts
+│   │   ├── CosmicInfo.ts
+│   │   └── CosmicTag.ts
+│   ├── utils/             # Shared utilities
+│   │   ├── svg.ts         # SVG creation helpers
+│   │   └── gradients.ts   # Gradient definitions
+│   ├── types/             # TypeScript definitions
+│   │   └── index.ts
+│   ├── styles/            # CSS and styling
+│   │   └── cosmic-ui.css
+│   └── demo/              # Demo system
+│       └── index.ts
+├── dist/                  # Built output (generated)
+│   ├── index.esm.js       # ES Module build
+│   ├── index.cjs.js       # CommonJS build
+│   ├── index.umd.js       # UMD build
+│   ├── index.d.ts         # TypeScript declarations
+│   └── cosmic-ui.css      # Processed styles
+└── screenshots/           # Component screenshots
+    ├── screenshot-cosmic-modal.png
+    ├── screenshot-cosmic-info.png
+    ├── screenshot-cosmic-card.png
+    └── screenshot-cosmic-tag.png
 ```
 
 ## 🚀 Quick Start
 
-### 1. Import the Library
+### 1. Build the Library
+
+```bash
+npm run build
+```
+
+This generates multiple output formats in the `dist/` directory.
+
+### 2. Import the Library
 
 ```typescript
-import { CosmicUI } from './cosmic-ui/cosmicUI';
-// OR if installed via npm:
-// import { CosmicUI } from 'cosmic-ui-lite';
+// Using ES modules (recommended)
+import { CosmicUI } from './dist/index.esm.js';
+
+// Using CommonJS
+const { CosmicUI } = require('./dist/index.cjs.js');
+
+// Using UMD (browser)
+// Include <script src="./dist/index.umd.js"></script> in HTML
+// Then use: const { CosmicUI } = window.CosmicUILite;
 ```
 
-### 2. Include the CSS
+### 3. Include the CSS
 
 ```html
-<link rel="stylesheet" href="./cosmic-ui/cosmic-ui.css">
-<!-- OR if installed via npm -->
-<!-- <link rel="stylesheet" href="node_modules/cosmic-ui-lite/cosmic-ui.css"> -->
+<link rel="stylesheet" href="./dist/cosmic-ui.css">
 ```
 
-### 3. Create Components
+### 4. Create Components
 
 ```typescript
 // Create a button
@@ -271,10 +314,16 @@ CosmicUI.showNotification('Success', 'Target eliminated');
 Use the demo system to test all components:
 
 ```typescript
-import { createCosmicDemo } from './cosmic-ui/cosmicDemo';
+import { createCosmicDemo } from './dist/index.esm.js';
 
 // Add demo panel to page
 createCosmicDemo();
+```
+
+Or build and run the demo:
+
+```bash
+npm run demo
 ```
 
 This creates a floating demo panel with buttons to test:
@@ -447,10 +496,19 @@ locations.forEach((loc, index) => {
 
 ## 🚀 Getting Started for Development
 
-1. **Copy the cosmic-ui folder** to your project
-2. **Import the main class**: `import { CosmicUI } from './cosmic-ui/cosmicUI'`
-3. **Include the CSS**: Link to `cosmic-ui.css` in your HTML
-4. **Start creating components** using the documented interfaces
+1. **Clone the repository** or download the source code
+2. **Install dependencies**: `npm install`
+3. **Build the library**: `npm run build`
+4. **Import components**: Use the built files in `dist/`
+5. **Start creating components** using the documented interfaces
+
+### Development Commands
+
+- `npm run build` - Build all output formats
+- `npm run build:watch` - Watch mode for development
+- `npm run dev` - Alias for build:watch
+- `npm run demo` - Build and run demo system
+- `npm run clean` - Clean dist directory
 
 ## 📝 TypeScript Support
 
@@ -464,8 +522,10 @@ import {
   CosmicCardOptions,
   CosmicInfoOptions,
   CosmicTagOptions
-} from './cosmic-ui/cosmicUI';
+} from './dist/index.esm.js';
 ```
+
+TypeScript declarations are automatically generated and included in `dist/index.d.ts`.
 
 ## 🔄 Version History
 

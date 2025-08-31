@@ -1,4 +1,5 @@
 import { createSvgElements } from '../utils/gradients';
+import { createCloseIcon } from '../utils/svg';
 import type { CosmicModalOptions } from '../types';
 import { CosmicButton } from './CosmicButton';
 
@@ -39,8 +40,8 @@ export class CosmicModal {
     if (options.showCloseButton !== false) {
       const closeBtn = document.createElement('button');
       closeBtn.className = 'cosmic-modal-close';
-      closeBtn.innerHTML =
-        '<img src="textures/icons/close.svg" alt="Close" style="width: 40px; height: 40px; filter: inherit;">';
+      const closeIcon = createCloseIcon();
+      closeBtn.appendChild(closeIcon);
       closeBtn.addEventListener('click', () => {
         CosmicModal.close(overlay);
         if (options.onClose) options.onClose();
