@@ -1,0 +1,72 @@
+{
+  "name": "cosmic-ui-lite",
+  "version": "1.0.0",
+  "description": "A lightweight, futuristic, space-themed UI component library built with TypeScript and vanilla JavaScript",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "README.md",
+    "CHANGELOG.md",
+    "screenshots/"
+  ],
+  "keywords": [
+    "ui",
+    "components",
+    "typescript",
+    "css",
+    "space",
+    "futuristic",
+    "svg",
+    "animations",
+    "cosmic",
+    "sci-fi",
+    "vanilla-js",
+    "lite",
+    "lightweight",
+    "game-ui",
+    "zero-dependencies"
+  ],
+  "author": "Richard Fu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fur-gaming/cosmic-ui-lite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fur-gaming/cosmic-ui-lite/issues"
+  },
+  "homepage": "https://github.com/fur-gaming/cosmic-ui-lite#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "dev": "npm run build:watch",
+    "demo": "npm run build && node -e \"import('./dist/demo/index.js').then(m => m.createCosmicDemo())\"",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "rollup": "^3.0.0",
+    "rollup-plugin-dts": "^6.0.0",
+    "rollup-plugin-postcss": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/cosmic-ui.css"
+  }
+}
