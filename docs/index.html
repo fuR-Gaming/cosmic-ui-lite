@@ -5,7 +5,667 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmic UI Lite - Live Demo</title>
     <meta name="description" content="Interactive demo of Cosmic UI Lite - A lightweight, futuristic, space-themed UI component library">
-    <link rel="stylesheet" href="https://unpkg.com/cosmic-ui-lite@latest/dist/cosmic-ui.css" onerror="this.href='https://cdn.jsdelivr.net/npm/cosmic-ui-lite@1/dist/cosmic-ui.css'">
+    <style>
+        /* ========================================
+           COSMIC UI COMPONENTS (SVG-based)
+           ======================================== */
+
+        /* Cosmic Button Wrapper */
+        .cosmic-btn-wrapper {
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .cosmic-btn-wrapper:hover {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3));
+        }
+
+        .cosmic-btn-wrapper:active {
+            transform: translateY(0);
+        }
+
+        /* Cosmic Button SVG Layers */
+        .cosmic-btn-bg,
+        .cosmic-btn-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cosmic-btn-bg {
+            z-index: 0;
+            background-size: 400% 400%;
+            animation: particleFlash 8s ease-in-out infinite;
+        }
+
+        .cosmic-btn-border {
+            z-index: 1;
+            filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
+            animation: cosmicPulse 3s ease-in-out infinite alternate;
+        }
+
+        .cosmic-btn-bg path,
+        .cosmic-btn-border path {
+            transition: fill 0.3s ease, stroke 0.3s ease;
+        }
+
+        /* Cosmic Button Content */
+        .cosmic-btn {
+            position: relative;
+            z-index: 2;
+            background: transparent;
+            border: none;
+            width: 100%;
+            height: 100%;
+            min-width: 120px;
+            min-height: 50px;
+            color: #00d4ff;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cosmic-btn-wrapper:hover .cosmic-btn {
+            color: #ffffff;
+            text-shadow: 0 0 10px #00d4ff;
+        }
+
+        .cosmic-btn.primary {
+            color: #4da6ff;
+        }
+
+        .cosmic-btn.secondary {
+            color: #ff6b35;
+        }
+
+        .cosmic-btn.danger {
+            color: #ff4444;
+        }
+
+        .cosmic-btn:disabled {
+            cursor: not-allowed;
+            filter: brightness(0.5) contrast(0.8);
+            color: #666;
+        }
+
+        /* Cosmic Modal Overlay */
+        .cosmic-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(2px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 900;
+            cursor: pointer;
+            opacity: 0;
+            animation: modalFadeIn 0.3s ease-out forwards;
+        }
+
+        /* Win overlay with transparent blur */
+        .cosmic-info-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Cosmic Modal Wrapper */
+        .cosmic-modal-wrapper {
+            position: relative;
+            max-width: min(500px, calc(100% - 100px));
+            width: 90%;
+            min-height: 180px;
+            max-height: 80vh;
+            cursor: default;
+            animation: modalSlideIn 0.4s ease-out;
+        }
+
+        /* Cosmic SVG Layers - Used by all cosmic components */
+        .cosmic-bg,
+        .cosmic-border {
+            position: absolute;
+            width: calc(100% + 36px);
+            height: max(100%, 120px);
+            transform: translateX(-10px);
+        }
+
+        .cosmic-bg {
+            z-index: 0;
+            background-size: 300% 300%;
+            animation: modalParticleFlash 6s ease-in-out infinite;
+        }
+
+        .cosmic-border {
+            z-index: 1;
+            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.6));
+            animation: cosmicModalPulse 4s ease-in-out infinite;
+        }
+
+        .cosmic-bg path,
+        .cosmic-border path {
+            transition: fill 0.3s ease, stroke 0.3s ease;
+        }
+
+        /* Cosmic Content - Shared by modal, tag, and info components */
+        .cosmic-content {
+            position: relative;
+            z-index: 2;
+            padding: 24px 4px 12px 4px;
+            width: 100%;
+            height: 100%;
+            color: #ffffff;
+            min-height: 100px;
+        }
+
+        /* Legacy alias for backward compatibility */
+        .cosmic-modal-content {
+            position: relative;
+            z-index: 2;
+            padding: 24px 4px 12px 4px;
+            width: 100%;
+            height: 100%;
+            color: #ffffff;
+            min-height: 100px;
+        }
+
+        /* Cosmic Headers - Two variants */
+        .cosmic-header {
+            padding: 10px 20px 10px;
+        }
+
+        .cosmic-header-bordered {
+            margin: 0 20px 0 5px;
+            padding: 10px 20px 10px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        /* Legacy aliases for backward compatibility */
+        .cosmic-modal-header {
+            padding: 10px 20px 10px;
+        }
+
+        /* Cosmic Titles - Base and enhanced variants */
+        .cosmic-title {
+            margin: 0;
+            color: #00d4ff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .cosmic-title-enhanced {
+            margin: 0;
+            color: #00d4ff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Legacy alias for backward compatibility */
+        .cosmic-modal-title {
+            margin: 0;
+            color: #00d4ff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Cosmic Modal Close Button */
+        .cosmic-modal-close {
+            position: absolute;
+            top: -12px;
+            right: -40px;
+            background: none;
+            border: none;
+            color: #ff6b35;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .cosmic-modal-close:hover {
+            color: #ff4444;
+            text-shadow: 0 0 10px #ff4444;
+            transform: scale(1.1);
+        }
+
+        /* Cosmic Modal Body */
+        .cosmic-modal-body {
+            padding: 12px 30px;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Cosmic Modal Footer */
+        .cosmic-modal-footer {
+            display: block;
+            width: 50%;
+            margin-bottom: 10px;
+            padding-left: 50%;
+            text-align: center;
+        }
+
+        /* Cosmic Card Wrapper */
+        .cosmic-card-wrapper {
+            position: relative;
+            display: block;
+            min-width: 300px;
+            min-height: 180px;
+            transition: all 0.3s ease;
+        }
+
+        .cosmic-card-wrapper:hover {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3));
+        }
+
+        /* Cosmic Card SVG Layers */
+        .cosmic-card-bg,
+        .cosmic-card-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cosmic-card-bg {
+            z-index: 0;
+            background-size: 500% 500%;
+            animation: cardParticleFlash 10s ease-in-out infinite;
+        }
+
+        .cosmic-card-border {
+            z-index: 1;
+            filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.3));
+            animation: cosmicCardPulse 5s ease-in-out infinite alternate;
+        }
+
+        .cosmic-card-bg path,
+        .cosmic-card-border path {
+            transition: fill 0.3s ease, stroke 0.3s ease;
+        }
+
+        /* Cosmic Card Content */
+        .cosmic-card {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            color: #ffffff;
+        }
+
+        .cosmic-card-title {
+            color: #00d4ff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .cosmic-card-content {
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Animations for modals */
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Cosmic Pulsing Animations */
+        @keyframes cosmicPulse {
+            0% {
+                filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4)) hue-rotate(0deg);
+            }
+            25% {
+                filter: drop-shadow(0 0 12px rgba(0, 255, 150, 0.5)) hue-rotate(30deg);
+            }
+            50% {
+                filter: drop-shadow(0 0 15px rgba(150, 0, 255, 0.6)) hue-rotate(90deg);
+            }
+            75% {
+                filter: drop-shadow(0 0 12px rgba(255, 100, 0, 0.5)) hue-rotate(180deg);
+            }
+            100% {
+                filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4)) hue-rotate(360deg);
+            }
+        }
+
+        @keyframes cosmicModalPulse {
+            0% {
+                filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.6)) brightness(1);
+            }
+            33% {
+                filter: drop-shadow(0 0 20px rgba(150, 0, 255, 0.7)) brightness(1.1);
+            }
+            66% {
+                filter: drop-shadow(0 0 25px rgba(0, 255, 150, 0.8)) brightness(1.2);
+            }
+            100% {
+                filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.6)) brightness(1);
+            }
+        }
+
+        @keyframes cosmicCardPulse {
+            0% {
+                filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.3));
+            }
+            50% {
+                filter: drop-shadow(0 0 10px rgba(100, 150, 255, 0.4));
+            }
+            100% {
+                filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.3));
+            }
+        }
+
+        /* Particle Flash Keyframes */
+        @keyframes particleFlash {
+            0%,
+            100% {
+                background-position: 0% 50%;
+                opacity: 0.3;
+            }
+            25% {
+                background-position: 100% 50%;
+                opacity: 0.8;
+            }
+            50% {
+                background-position: 50% 100%;
+                opacity: 0.5;
+            }
+            75% {
+                background-position: 0% 0%;
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes modalParticleFlash {
+            0%,
+            100% {
+                background-position: 0% 0%;
+                opacity: 0.4;
+            }
+            33% {
+                background-position: 100% 50%;
+                opacity: 0.9;
+            }
+            66% {
+                background-position: 50% 100%;
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes cardParticleFlash {
+            0%,
+            100% {
+                background-position: 0% 50%;
+                opacity: 0.2;
+            }
+            50% {
+                background-position: 100% 50%;
+                opacity: 0.5;
+            }
+        }
+
+        /* Enhanced Hover Effects */
+        .cosmic-btn-wrapper:hover .cosmic-btn-border {
+            animation-duration: 1s;
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.8)) brightness(1.3);
+        }
+
+        .cosmic-modal-wrapper:hover .cosmic-border {
+            filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.9)) brightness(1.2);
+        }
+
+        .cosmic-card-wrapper:hover .cosmic-card-border {
+            animation-duration: 2s;
+            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.7)) brightness(1.2);
+        }
+
+        /* Cosmic Tag */
+        .cosmic-tag-wrapper {
+            width: 334px;
+        }
+
+        .cosmic-tag-wrapper .cosmic-bg,
+        .cosmic-tag-wrapper .cosmic-border {
+            transform: translateX(-20px) translateY(-10px) scaleX(-1);
+            height: max(100%, 180px);
+        }
+
+        .cosmic-tag-wrapper.flipped .cosmic-bg,
+        .cosmic-tag-wrapper.flipped .cosmic-border {
+            transform: translateX(-20px) translateY(-10px) scaleX(-1);
+        }
+
+        .cosmic-info-wrapper {
+            position: relative;
+            max-width: min(500px, calc(100% - 100px));
+            min-height: 180px;
+            max-height: 80vh;
+            cursor: default;
+            animation: modalSlideIn 0.4s ease-out;
+            width: 50%;
+            min-width: 300px;
+        }
+
+        .cosmic-info-wrapper .cosmic-bg,
+        .cosmic-info-wrapper .cosmic-border {
+            height: max(120%, 120px);
+        }
+
+        .cosmic-info-title {
+            background: linear-gradient(
+                45deg,
+                #ffd700,
+                #ffed4e,
+                #fff700,
+                #ffd700
+            ) !important;
+            background-size: 400% 400% !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            animation: cosmicWinShimmer 2s ease-in-out infinite !important;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3) !important;
+            font-weight: bold !important;
+            letter-spacing: 2px !important;
+            font-size: 1.2em !important;
+            transform: scale(1) !important;
+            transition: transform 0.3s ease !important;
+        }
+
+        .cosmic-info-title:hover {
+            transform: scale(1.05) !important;
+        }
+
+        /* Title color specific gradients and shadows */
+        .cosmic-info-title.yellow {
+            background: linear-gradient(
+                45deg,
+                #ffd700,
+                #ffed4e,
+                #fff700,
+                #ffd700
+            ) !important;
+            background-size: 400% 400% !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3) !important;
+        }
+
+        .cosmic-info-title.green {
+            background: linear-gradient(
+                45deg,
+                #00ff41,
+                #39ff14,
+                #00ff00,
+                #32cd32
+            ) !important;
+            background-size: 400% 400% !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5), 0 0 40px rgba(0, 255, 65, 0.3) !important;
+        }
+
+        .cosmic-info-title.blue {
+            background: linear-gradient(
+                45deg,
+                #00bfff,
+                #1e90ff,
+                #4169e1,
+                #0066cc
+            ) !important;
+            background-size: 400% 400% !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            text-shadow: 0 0 20px rgba(0, 191, 255, 0.5), 0 0 40px rgba(0, 191, 255, 0.3) !important;
+        }
+
+        .cosmic-info-title.purple {
+            background: linear-gradient(
+                45deg,
+                #9932cc,
+                #ba55d3,
+                #da70d6,
+                #8b008b
+            ) !important;
+            background-size: 400% 400% !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            text-shadow: 0 0 20px rgba(153, 50, 204, 0.5),
+                0 0 40px rgba(153, 50, 204, 0.3) !important;
+        }
+
+        .cosmic-info-title.golden-red {
+            background: linear-gradient(
+                45deg,
+                #ff4500,
+                #ff6347,
+                #ffd700,
+                #ff8c00
+            ) !important;
+            background-size: 400% 400% !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            text-shadow: 0 0 20px rgba(255, 69, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3) !important;
+        }
+
+        @keyframes cosmicWinShimmer {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Responsive scaling for small screens */
+        @media (max-width: 600px) and (max-height: 400px) {
+            .cosmic-modal-wrapper {
+                transform: scale(0.7);
+                font-size: 0.8rem;
+            }
+
+            .cosmic-modal-wrapper * {
+                font-size: 0.8em;
+            }
+
+            .cosmic-title-enhanced {
+                font-size: 1.2rem;
+            }
+
+            .cosmic-modal-body {
+                padding: 8px 20px;
+            }
+
+            .cosmic-info-wrapper {
+                transform: scale(0.7);
+                font-size: 0.8rem;
+            }
+
+            .cosmic-info-wrapper * {
+                font-size: 0.8em;
+            }
+
+            .cosmic-info-title {
+                font-size: 1.2rem !important;
+            }
+
+            .cosmic-content {
+                padding: 16px 20px;
+            }
+        }
+
+        @media (max-height: 300px) {
+            .cosmic-info-wrapper {
+                transform: translateY(0) scale(0.75);
+            }
+
+            @keyframes modalSlideIn {
+                from {
+                    transform: translateY(-50px) scale(0.65);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0) scale(0.75);
+                    opacity: 1;
+                }
+            }
+        }
+
+        /* Demo page styles */
     <style>
         body {
             margin: 0;
@@ -340,14 +1000,14 @@ import 'cosmic-ui-lite/dist/cosmic-ui.css';</pre>
 
         // Wait for CosmicUI to load with better error handling
         function initializeDemo() {
-            if (typeof window.CosmicUILite === 'undefined') {
+            if (typeof window.CosmicUI === 'undefined') {
                 console.error('CosmicUI not loaded. Retrying...');
                 setTimeout(initializeDemo, 1000);
                 return;
             }
             
             // Initialize CosmicUI from the global object
-            const { CosmicUI } = window.CosmicUILite;
+            const CosmicUI = window.CosmicUI;
         
         // Demo data
         const buttonVariants = [
