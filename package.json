@@ -2,6 +2,7 @@
   "name": "cosmic-ui-lite",
   "version": "1.0.0",
   "description": "A lightweight, futuristic, space-themed UI component library built with TypeScript and vanilla JavaScript",
+  "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -45,7 +46,7 @@
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "dev": "npm run build:watch",
-    "demo": "npm run build && node -e \"import('./dist/demo/index.js').then(m => m.createCosmicDemo())\"",
+    "demo": "npm run build && node demo.js",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run clean && npm run build"
   },
@@ -57,10 +58,9 @@
     "rollup": "^3.0.0",
     "rollup-plugin-dts": "^6.0.0",
     "rollup-plugin-postcss": "^4.0.0",
+    "tslib": "^2.8.1",
     "typescript": "^5.0.0"
   },
-  "dependencies": {},
-  "peerDependencies": {},
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",

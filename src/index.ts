@@ -1,5 +1,4 @@
 // Main entry point for Cosmic UI package
-import './styles/cosmic-ui.css';
 
 // Import components
 import { CosmicButton } from './components/CosmicButton';
@@ -95,9 +94,6 @@ export class CosmicUI {
 
 // Export individual components
 export { CosmicButton, CosmicModal, CosmicCard, CosmicInfo, CosmicTag };
-
-// Export demo utilities
-export { createCosmicDemo } from './demo';
 
 // Default export
 export default CosmicUI;
