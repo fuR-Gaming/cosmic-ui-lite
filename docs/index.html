@@ -1000,14 +1000,15 @@ import 'cosmic-ui-lite/dist/cosmic-ui.css';</pre>
 
         // Wait for CosmicUI to load with better error handling
         function initializeDemo() {
-            if (typeof window.CosmicUI === 'undefined') {
+            if (typeof window.CosmicUI === 'undefined' || typeof window.CosmicUI.CosmicUI === 'undefined') {
                 console.error('CosmicUI not loaded. Retrying...');
+                console.log('Available:', window.CosmicUI);
                 setTimeout(initializeDemo, 1000);
                 return;
             }
             
-            // Initialize CosmicUI from the global object
-            const CosmicUI = window.CosmicUI;
+            // Initialize CosmicUI from the global object - use the main class
+            const CosmicUI = window.CosmicUI.CosmicUI;
         
         // Demo data
         const buttonVariants = [
