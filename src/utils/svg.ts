@@ -71,8 +71,8 @@ export function createPath(d: string, fill?: string, stroke?: string, strokeWidt
  */
 export function createCloseIcon(): SVGElement {
   const svg = createSvgElement('cosmic-close-icon', VIEW_BOXES.CLOSE_ICON);
-  svg.style.width = '24px';
-  svg.style.height = '24px';
+  svg.style.width = '40px';
+  svg.style.height = '40px';
   svg.style.cursor = 'pointer';
   
   const path = createPath(
