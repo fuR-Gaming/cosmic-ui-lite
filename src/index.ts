@@ -1,5 +1,8 @@
 // Main entry point for Cosmic UI package
 
+// Import styles
+import './styles/cosmic-ui.css';
+
 // Import components
 import { CosmicButton } from './components/CosmicButton';
 import { CosmicModal } from './components/CosmicModal';

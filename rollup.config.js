@@ -81,6 +81,6 @@ export default [
       format: 'esm'
     },
     plugins: [dts()],
-    external: []
+    external: [/\.css$/] // Exclude CSS imports from type declarations
   }
 ];
