@@ -16,6 +16,7 @@
 
 A lightweight, futuristic, space-themed UI component library built with TypeScript and vanilla JavaScript. Features SVG-based components with animated gradients, cosmic effects, and responsive design.
 
+> 🌟 **[Live Demo](https://fur-gaming.github.io/cosmic-ui-lite/) - Try all components interactively!**
 > 📸 **See the [Visual Showcase](#-visual-showcase) below for component screenshots and examples!**
 > 📚 **[Complete Documentation](../../wiki) | [Local Docs](docs/wiki/) | [Architecture Guide](docs/wiki/wiki-architecture-overview.md)**
 
