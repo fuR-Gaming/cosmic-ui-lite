@@ -670,18 +670,48 @@
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e, #0f0f23);
+            background: linear-gradient(135deg, #000000, #0a0a0a, #1a1a2e, #0f0f23);
+            background-attachment: fixed;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
+            color: #ffffff;
             min-height: 100vh;
             overflow-x: hidden;
+        }
+
+        /* Add subtle stars/particles effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #00d4ff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #00d4ff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, #00d4ff, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            opacity: 0.4;
+            animation: starfield 20s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes starfield {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
         }
         
         .demo-header {
             text-align: center;
             padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.5);
+            position: relative;
+            z-index: 2;
         }
         
         .demo-title {
@@ -734,6 +764,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
+            position: relative;
+            z-index: 2;
         }
         
         .demo-section {
@@ -772,9 +804,10 @@
         .stat-item {
             text-align: center;
             padding: 20px;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.4);
             border-radius: 8px;
+            backdrop-filter: blur(5px);
         }
         
         .stat-value {
@@ -801,8 +834,11 @@
             align-items: center;
             gap: 10px;
             padding: 15px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.6);
             border-left: 3px solid #00d4ff;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            backdrop-filter: blur(5px);
         }
         
         .feature-icon {
@@ -812,9 +848,11 @@
         .footer {
             text-align: center;
             padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border-top: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(0, 212, 255, 0.5);
             margin-top: 60px;
+            position: relative;
+            z-index: 2;
         }
         
         @media (max-width: 768px) {
@@ -965,10 +1003,10 @@
         <!-- Installation Section -->
         <div class="demo-section">
             <h2>📦 Quick Installation</h2>
-            <div style="background: rgba(0, 0, 0, 0.5); padding: 30px; border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.3);">
-                <pre style="margin: 0; color: #00d4ff; font-size: 1.1rem;">npm install cosmic-ui-lite</pre>
+            <div style="background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; border: 1px solid rgba(0, 212, 255, 0.5); backdrop-filter: blur(10px);">
+                <pre style="margin: 0; color: #00d4ff; font-size: 1.1rem; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);">npm install cosmic-ui-lite</pre>
                 <br>
-                <pre style="margin: 0; color: #00ff88; font-size: 0.95rem;">import { CosmicUI } from 'cosmic-ui-lite';
+                <pre style="margin: 0; color: #00ff88; font-size: 0.95rem; text-shadow: 0 0 8px rgba(0, 255, 136, 0.3);">import { CosmicUI } from 'cosmic-ui-lite';
 import 'cosmic-ui-lite/dist/cosmic-ui.css';</pre>
             </div>
         </div>
