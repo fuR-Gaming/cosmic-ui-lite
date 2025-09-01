@@ -8,9 +8,10 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vanilla JS](https://img.shields.io/badge/Vanilla%20JS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Zero Dependencies](https://img.shields.io/badge/Zero%20Dependencies-00d4ff?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/cosmic-ui-lite)
-[![Game Ready](https://img.shields.io/badge/Game%20Ready-ff6b35?style=for-the-badge&logo=gamepad&logoColor=white)](https://github.com/fuR-Gaming/cosmic-ui-lite/wiki/Game-Integration)
+[![Game Ready](https://img.shields.io/badge/Game%20Ready-ff6b35?style=for-the-badge&logo=gamepad&logoColor=white)](https://github.com/fuR-Gaming/cosmic-ui-lite/wiki/Complete-Examples)
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/fuR-Gaming/cosmic-ui-lite/ci.yml?style=for-the-badge&logo=github-actions)](https://github.com/fuR-Gaming/cosmic-ui-lite/actions)
+[![GitHub Pages](https://img.shields.io/github/deployments/fuR-Gaming/cosmic-ui-lite/github-pages?style=for-the-badge&logo=github&label=Demo%20Site&color=00ff88)](https://fur-gaming.github.io/cosmic-ui-lite/)
 [![Wiki](https://img.shields.io/badge/Wiki-Documentation-00ff88?style=for-the-badge&logo=gitbook&logoColor=white)](https://github.com/fuR-Gaming/cosmic-ui-lite/wiki)
 [![Bundle Size](https://img.shields.io/bundlephobia/minzip/cosmic-ui-lite?style=for-the-badge&logo=webpack&color=purple)](https://bundlephobia.com/package/cosmic-ui-lite)
 

@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build project
+      run: npm run build
+    
+    - name: Verify build outputs
+      run: |
+        echo "Checking build outputs..."
+        ls -la dist/
+        test -f dist/index.esm.js || (echo "ESM build missing" && exit 1)
+        test -f dist/index.cjs.js || (echo "CJS build missing" && exit 1) 
+        test -f dist/index.umd.js || (echo "UMD build missing" && exit 1)
+        test -f dist/index.d.ts || (echo "TypeScript declarations missing" && exit 1)
+        test -f dist/cosmic-ui.css || (echo "CSS build missing" && exit 1)
+        echo "✅ All build outputs verified!"
+    
+    - name: Test UMD build size
+      run: |
+        UMD_SIZE=$(wc -c < dist/index.umd.js)
+        echo "UMD build size: ${UMD_SIZE} bytes"
+        if [ $UMD_SIZE -gt 100000 ]; then
+          echo "⚠️ UMD build is larger than 100KB (${UMD_SIZE} bytes)"
+          echo "Consider optimizing for bundle size"
+        else
+          echo "✅ UMD build size is acceptable"
+        fi
