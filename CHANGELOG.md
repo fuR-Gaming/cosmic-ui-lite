@@ -5,6 +5,30 @@ All notable changes to Cosmic UI Lite will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-09-01
+
+### Added
+- **CI/CD Workflow**: Added comprehensive GitHub Actions CI with Node.js 18.x and 20.x testing
+- **Build Validation**: Automated verification of all distribution formats (ESM, CJS, UMD, types, CSS)
+- **Bundle Size Monitoring**: Quality gates for build output size tracking
+- **Live Demo Link**: Prominent live demo link in README for enhanced discoverability
+
+### Improved
+- **Demo Layout**: Optimized demo page layout by removing excessive padding from cards
+- **Visual Presentation**: Enhanced card height and spacing for better appearance
+- **GitHub Pages Integration**: Fixed deployment status monitoring with dedicated badge
+- **Documentation Links**: Fixed broken wiki links in README badges
+
+### Fixed
+- **SVG References**: Converted external SVG references to code-based generation for consistency
+- **Badge Links**: Updated badges to reference existing documentation pages
+- **Demo Styling**: Resolved card height issues that made tall modals/cards look poor
+
+### Documentation
+- **Reference Materials**: Added original SVG files to `references/svg/` for historical context
+- **Wiki Integration**: Fixed Game Ready badge to point to Complete Examples page
+- **Build Pipeline**: Isolated reference materials from build process
+
 ## [1.0.0] - 2025-08-31
 
 ### Added
