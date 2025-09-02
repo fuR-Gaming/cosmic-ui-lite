@@ -620,10 +620,6 @@
 		font-size: 1.2rem;
 	}
 
-	.cosmic-content {
-		/* padding: 16px 20px; */
-	}
-
 	.cosmic-modal-body {
 		padding: 8px 20px;
 	}
@@ -639,10 +635,6 @@
 
 	.cosmic-info-title {
 		font-size: 1.2rem !important;
-	}
-
-	.cosmic-content {
-		padding: 16px 20px;
 	}
 }
 
