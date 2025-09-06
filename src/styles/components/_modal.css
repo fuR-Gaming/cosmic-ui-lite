@@ -1,0 +1,66 @@
+/* ========================================
+   COSMIC MODAL COMPONENT
+   Full-featured modal with backdrop, animations, and responsive design
+   ======================================== */
+
+/* ========================================
+   MODAL WRAPPER
+   Main modal container with sizing and animation
+   ======================================== */
+
+.cosmic-modal-wrapper {
+  position: relative;
+  max-width: var(--cosmic-modal-max-width);
+  width: 90%;
+  min-height: var(--cosmic-modal-min-height);
+  max-height: 80vh;
+  cursor: default;
+  animation: modalSlideIn var(--cosmic-transition-medium) ease-out;
+}
+
+/* ========================================
+   MODAL CLOSE BUTTON
+   Positioned close button with hover effects
+   ======================================== */
+
+.cosmic-modal-close {
+  position: absolute;
+  top: -12px;
+  right: -35px;
+  background: none;
+  border: none;
+  color: var(--cosmic-button-secondary);
+  cursor: pointer;
+  line-height: var(--cosmic-line-height-tight);
+  transition: all var(--cosmic-transition-fast) ease;
+}
+
+.cosmic-modal-close:hover {
+  color: var(--cosmic-button-danger);
+  text-shadow: 0 0 10px var(--cosmic-button-danger);
+  transform: scale(1.1);
+}
+
+/* ========================================
+   MODAL BODY
+   Content area with proper padding and typography
+   ======================================== */
+
+.cosmic-modal-body {
+  padding: 12px var(--cosmic-padding-xl);
+  color: var(--cosmic-text-primary);
+  line-height: var(--cosmic-line-height-normal);
+}
+
+/* ========================================
+   MODAL FOOTER
+   Button area with proper alignment and spacing
+   ======================================== */
+
+.cosmic-modal-footer {
+  display: block;
+  width: 50%;
+  margin-bottom: var(--cosmic-margin-small);
+  padding-left: 50%;
+  text-align: center;
+}

@@ -1,0 +1,29 @@
+/* ========================================
+   COSMIC TAG COMPONENT
+   Location/status tags with flip orientation support
+   ======================================== */
+
+/* ========================================
+   TAG WRAPPER
+   Main container with fixed width and special transform handling
+   ======================================== */
+
+.cosmic-tag-wrapper {
+  width: var(--cosmic-tag-width);
+}
+
+.cosmic-tag-wrapper .cosmic-bg,
+.cosmic-tag-wrapper .cosmic-border {
+  transform: translateX(-20px) translateY(-10px) scaleX(-1);
+  height: max(100%, 180px);
+}
+
+/* ========================================
+   FLIPPED TAG VARIANT
+   Alternative orientation for contextual placement
+   ======================================== */
+
+.cosmic-tag-wrapper.flipped .cosmic-bg,
+.cosmic-tag-wrapper.flipped .cosmic-border {
+  transform: translateX(-20px) translateY(-10px) scaleX(-1);
+}

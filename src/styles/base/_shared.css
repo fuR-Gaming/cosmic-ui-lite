@@ -1,0 +1,153 @@
+/* ========================================
+   SHARED COMPONENT STYLES
+   Base styles used across multiple components
+   ======================================== */
+
+/* ========================================
+   SHARED SVG LAYERS
+   Used by modal, tag, info, and card components
+   ======================================== */
+
+.cosmic-bg,
+.cosmic-border {
+  position: absolute;
+  width: calc(100% + 36px);
+  height: max(100%, 120px);
+  transform: translateX(-10px);
+}
+
+.cosmic-bg {
+  z-index: var(--cosmic-z-background);
+  background-size: var(--cosmic-bg-size-small);
+  animation: modalParticleFlash var(--cosmic-animation-particle-fast) ease-in-out infinite;
+}
+
+.cosmic-border {
+  z-index: var(--cosmic-z-border);
+  filter: drop-shadow(var(--cosmic-shadow-medium) var(--cosmic-primary-bright));
+  animation: cosmicModalPulse 4s ease-in-out infinite;
+}
+
+.cosmic-bg path,
+.cosmic-border path {
+  transition: fill var(--cosmic-transition-fast) ease, stroke var(--cosmic-transition-fast) ease;
+}
+
+/* ========================================
+   SHARED CONTENT CONTAINERS
+   Used by modal, tag, and info components
+   ======================================== */
+
+.cosmic-content {
+  position: relative;
+  z-index: var(--cosmic-z-content);
+  padding: 24px 4px 12px 4px;
+  width: 100%;
+  height: 100%;
+  color: var(--cosmic-text-primary);
+  min-height: 100px;
+}
+
+/* Legacy alias for backward compatibility */
+.cosmic-modal-content {
+  position: relative;
+  z-index: var(--cosmic-z-content);
+  padding: 24px 4px 12px 4px;
+  width: 100%;
+  height: 100%;
+  color: var(--cosmic-text-primary);
+  min-height: 100px;
+}
+
+/* ========================================
+   SHARED HEADERS
+   Two variants: standard and bordered
+   ======================================== */
+
+.cosmic-header {
+  padding: var(--cosmic-padding-medium) var(--cosmic-padding-large) var(--cosmic-padding-medium);
+}
+
+.cosmic-header-bordered {
+  margin: 0 var(--cosmic-padding-large) 0 5px;
+  padding: var(--cosmic-padding-medium) var(--cosmic-padding-large) var(--cosmic-padding-medium);
+  border-bottom: 1px solid var(--cosmic-primary-glow);
+}
+
+/* Legacy alias for backward compatibility */
+.cosmic-modal-header {
+  padding: var(--cosmic-padding-medium) var(--cosmic-padding-large) var(--cosmic-padding-medium);
+}
+
+/* ========================================
+   SHARED TITLES
+   Base and enhanced variants with consistent styling
+   ======================================== */
+
+.cosmic-title {
+  margin: 0;
+  color: var(--cosmic-text-secondary);
+  font-size: var(--cosmic-font-xl);
+  font-weight: var(--cosmic-font-weight-bold);
+  text-transform: uppercase;
+}
+
+.cosmic-title-enhanced {
+  margin: 0;
+  color: var(--cosmic-text-secondary);
+  font-size: var(--cosmic-font-xl);
+  font-weight: var(--cosmic-font-weight-bold);
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: var(--cosmic-letter-spacing-tight);
+  text-shadow: 0 0 10px var(--cosmic-primary-glow);
+}
+
+/* Legacy alias for backward compatibility */
+.cosmic-modal-title {
+  margin: 0;
+  color: var(--cosmic-text-secondary);
+  font-size: var(--cosmic-font-xl);
+  font-weight: var(--cosmic-font-weight-bold);
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: var(--cosmic-letter-spacing-tight);
+  text-shadow: 0 0 10px var(--cosmic-primary-glow);
+}
+
+/* ========================================
+   SHARED OVERLAYS
+   Different overlay styles for different component types
+   ======================================== */
+
+.cosmic-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--cosmic-overlay-modal);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--cosmic-z-overlay-modal);
+  cursor: pointer;
+  opacity: 0;
+  animation: modalFadeIn var(--cosmic-transition-fast) ease-out forwards;
+}
+
+.cosmic-info-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--cosmic-overlay-info);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: var(--cosmic-z-overlay-info);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,143 @@
+/* ========================================
+   ANIMATION KEYFRAMES
+   All animation definitions for cosmic components
+   ======================================== */
+
+/* ========================================
+   MODAL ANIMATIONS
+   Entry and fade animations for modals
+   ======================================== */
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-50px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   COSMIC PULSE ANIMATIONS
+   Color-cycling glow effects for borders
+   ======================================== */
+
+@keyframes cosmicPulse {
+  0% {
+    filter: drop-shadow(var(--cosmic-shadow-small) var(--cosmic-glow-blue)) hue-rotate(0deg);
+  }
+  25% {
+    filter: drop-shadow(0 0 12px var(--cosmic-glow-green)) hue-rotate(30deg);
+  }
+  50% {
+    filter: drop-shadow(var(--cosmic-shadow-medium) var(--cosmic-glow-purple)) hue-rotate(90deg);
+  }
+  75% {
+    filter: drop-shadow(0 0 12px var(--cosmic-glow-orange)) hue-rotate(180deg);
+  }
+  100% {
+    filter: drop-shadow(var(--cosmic-shadow-small) var(--cosmic-glow-blue)) hue-rotate(360deg);
+  }
+}
+
+@keyframes cosmicModalPulse {
+  0% {
+    filter: drop-shadow(var(--cosmic-shadow-medium) var(--cosmic-primary-bright)) brightness(1);
+  }
+  33% {
+    filter: drop-shadow(var(--cosmic-shadow-hover) var(--cosmic-glow-purple)) brightness(1.1);
+  }
+  66% {
+    filter: drop-shadow(var(--cosmic-shadow-large) var(--cosmic-glow-green)) brightness(1.2);
+  }
+  100% {
+    filter: drop-shadow(var(--cosmic-shadow-medium) var(--cosmic-primary-bright)) brightness(1);
+  }
+}
+
+@keyframes cosmicCardPulse {
+  0% {
+    filter: drop-shadow(var(--cosmic-shadow-small) var(--cosmic-primary-glow));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(100, 150, 255, 0.4));
+  }
+  100% {
+    filter: drop-shadow(var(--cosmic-shadow-small) var(--cosmic-primary-glow));
+  }
+}
+
+/* ========================================
+   PARTICLE FLASH ANIMATIONS
+   Background gradient movement effects
+   ======================================== */
+
+@keyframes particleFlash {
+  0%, 100% {
+    background-position: 0% 50%;
+    opacity: 0.3;
+  }
+  25% {
+    background-position: 100% 50%;
+    opacity: 0.8;
+  }
+  50% {
+    background-position: 50% 100%;
+    opacity: 0.5;
+  }
+  75% {
+    background-position: 0% 0%;
+    opacity: 0.7;
+  }
+}
+
+@keyframes modalParticleFlash {
+  0%, 100% {
+    background-position: 0% 0%;
+    opacity: 0.4;
+  }
+  33% {
+    background-position: 100% 50%;
+    opacity: 0.9;
+  }
+  66% {
+    background-position: 50% 100%;
+    opacity: 0.6;
+  }
+}
+
+@keyframes cardParticleFlash {
+  0%, 100% {
+    background-position: 0% 50%;
+    opacity: 0.2;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.5;
+  }
+}
+
+/* ========================================
+   INFO TITLE ANIMATIONS
+   Shimmer effect for info component titles
+   ======================================== */
+
+@keyframes cosmicWinShimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}

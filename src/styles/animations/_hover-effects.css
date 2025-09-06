@@ -1,0 +1,42 @@
+/* ========================================
+   HOVER EFFECTS
+   Enhanced interactions for all cosmic components
+   ======================================== */
+
+/* ========================================
+   BUTTON HOVER EFFECTS
+   Enhanced glow and animation speed on hover
+   ======================================== */
+
+.cosmic-btn-wrapper:hover .cosmic-btn-border {
+  animation-duration: var(--cosmic-animation-pulse-fast);
+  filter: drop-shadow(var(--cosmic-shadow-hover) var(--cosmic-primary-intense)) brightness(1.3);
+}
+
+/* ========================================
+   MODAL HOVER EFFECTS
+   Intensified border effects on modal hover
+   ======================================== */
+
+.cosmic-modal-wrapper:hover .cosmic-border {
+  filter: drop-shadow(var(--cosmic-shadow-large) rgba(0, 212, 255, 0.9)) brightness(1.2);
+}
+
+/* ========================================
+   CARD HOVER EFFECTS
+   Enhanced animation and brightness on card hover
+   ======================================== */
+
+.cosmic-card-wrapper:hover .cosmic-card-border {
+  animation-duration: 2s;
+  filter: drop-shadow(var(--cosmic-shadow-medium) rgba(0, 212, 255, 0.7)) brightness(1.2);
+}
+
+/* ========================================
+   INFO TITLE HOVER EFFECTS
+   Scale transformation for interactive feedback
+   ======================================== */
+
+.cosmic-info-title:hover {
+  transform: scale(1.05) !important;
+}

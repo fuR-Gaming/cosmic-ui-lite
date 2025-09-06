@@ -1,0 +1,90 @@
+/* ========================================
+   COSMIC CARD COMPONENT
+   Content containers with hover effects and cosmic styling
+   ======================================== */
+
+/* ========================================
+   CARD WRAPPER
+   Container with minimum dimensions and hover effects
+   ======================================== */
+
+.cosmic-card-wrapper {
+  position: relative;
+  display: block;
+  min-width: var(--cosmic-card-min-width);
+  min-height: var(--cosmic-card-min-height);
+  transition: all var(--cosmic-transition-fast) ease;
+}
+
+.cosmic-card-wrapper:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(var(--cosmic-shadow-hover) var(--cosmic-primary-glow));
+}
+
+/* ========================================
+   CARD SVG LAYERS
+   Background and border effects for cards
+   ======================================== */
+
+.cosmic-card-bg,
+.cosmic-card-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cosmic-card-bg {
+  z-index: var(--cosmic-z-background);
+  background-size: var(--cosmic-bg-size-large);
+  animation: cardParticleFlash var(--cosmic-animation-particle-slow) ease-in-out infinite;
+}
+
+.cosmic-card-border {
+  z-index: var(--cosmic-z-border);
+  filter: drop-shadow(var(--cosmic-shadow-small) var(--cosmic-primary-glow));
+  animation: cosmicCardPulse var(--cosmic-animation-pulse-slow) ease-in-out infinite alternate;
+}
+
+.cosmic-card-bg path,
+.cosmic-card-border path {
+  transition: fill var(--cosmic-transition-fast) ease, stroke var(--cosmic-transition-fast) ease;
+}
+
+/* ========================================
+   CARD CONTENT
+   Inner content area with proper spacing
+   ======================================== */
+
+.cosmic-card {
+  position: relative;
+  z-index: var(--cosmic-z-content);
+  padding: var(--cosmic-padding-large);
+  color: var(--cosmic-text-primary);
+}
+
+/* ========================================
+   CARD TITLE
+   Styled heading for card content
+   ======================================== */
+
+.cosmic-card-title {
+  color: var(--cosmic-text-secondary);
+  font-size: var(--cosmic-font-large);
+  font-weight: var(--cosmic-font-weight-bold);
+  margin: 0 0 var(--cosmic-margin-small) 0;
+  text-transform: uppercase;
+  letter-spacing: var(--cosmic-letter-spacing-tight);
+}
+
+/* ========================================
+   CARD CONTENT AREA
+   Main content area with proper positioning
+   ======================================== */
+
+.cosmic-card-content {
+  color: var(--cosmic-text-primary);
+  position: relative;
+  z-index: var(--cosmic-z-border);
+}

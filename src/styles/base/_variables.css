@@ -1,0 +1,124 @@
+/* ========================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   ======================================== */
+
+:root {
+  /* ========================================
+     COLOR PALETTE
+     ======================================== */
+  
+  /* Primary Colors */
+  --cosmic-primary: #00d4ff;
+  --cosmic-primary-glow: rgba(0, 212, 255, 0.3);
+  --cosmic-primary-bright: rgba(0, 212, 255, 0.6);
+  --cosmic-primary-intense: rgba(0, 212, 255, 0.8);
+  
+  /* Button Variant Colors */
+  --cosmic-button-primary: #4da6ff;
+  --cosmic-button-secondary: #ff6b35;
+  --cosmic-button-danger: #ff4444;
+  
+  /* Text Colors */
+  --cosmic-text-primary: #ffffff;
+  --cosmic-text-secondary: #00d4ff;
+  --cosmic-text-disabled: #666666;
+  
+  /* Background Colors */
+  --cosmic-overlay-modal: rgba(0, 0, 0, 0.8);
+  --cosmic-overlay-info: rgba(0, 0, 0, 0.3);
+  
+  /* Effect Colors */
+  --cosmic-glow-blue: rgba(0, 212, 255, 0.4);
+  --cosmic-glow-green: rgba(0, 255, 150, 0.5);
+  --cosmic-glow-purple: rgba(150, 0, 255, 0.6);
+  --cosmic-glow-orange: rgba(255, 100, 0, 0.5);
+  
+  /* Info Title Colors */
+  --cosmic-info-yellow: linear-gradient(45deg, #ffd700, #ffed4e, #fff700, #ffd700);
+  --cosmic-info-green: linear-gradient(45deg, #00ff41, #39ff14, #00ff00, #32cd32);
+  --cosmic-info-blue: linear-gradient(45deg, #00bfff, #1e90ff, #4169e1, #0066cc);
+  --cosmic-info-purple: linear-gradient(45deg, #9932cc, #ba55d3, #da70d6, #8b008b);
+  --cosmic-info-golden-red: linear-gradient(45deg, #ff4500, #ff6347, #ffd700, #ff8c00);
+  
+  /* ========================================
+     SPACING & SIZING
+     ======================================== */
+  
+  /* Component Dimensions */
+  --cosmic-button-min-width: 120px;
+  --cosmic-button-min-height: 50px;
+  --cosmic-card-min-width: 300px;
+  --cosmic-card-min-height: 180px;
+  --cosmic-modal-min-height: 180px;
+  --cosmic-modal-max-width: min(500px, calc(100% - 100px));
+  --cosmic-info-min-width: 300px;
+  --cosmic-tag-width: 334px;
+  
+  /* Padding & Margins */
+  --cosmic-padding-small: 4px;
+  --cosmic-padding-medium: 10px;
+  --cosmic-padding-large: 20px;
+  --cosmic-padding-xl: 30px;
+  --cosmic-margin-small: 10px;
+  
+  /* Border Radius */
+  --cosmic-border-radius: 8px;
+  
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+  
+  /* Font Sizes */
+  --cosmic-font-small: 0.6rem;
+  --cosmic-font-medium: 0.8rem;
+  --cosmic-font-base: 1rem;
+  --cosmic-font-large: 1.2rem;
+  --cosmic-font-xl: 1.5rem;
+  
+  /* Font Weights */
+  --cosmic-font-weight-normal: 400;
+  --cosmic-font-weight-bold: 700;
+  
+  /* Letter Spacing */
+  --cosmic-letter-spacing-tight: 0.1em;
+  --cosmic-letter-spacing-wide: 2px;
+  
+  /* Line Heights */
+  --cosmic-line-height-tight: 1;
+  --cosmic-line-height-normal: 1.6;
+  
+  /* ========================================
+     EFFECTS & ANIMATIONS
+     ======================================== */
+  
+  /* Transition Durations */
+  --cosmic-transition-fast: 0.3s;
+  --cosmic-transition-medium: 0.4s;
+  --cosmic-transition-slow: 0.5s;
+  
+  /* Animation Durations */
+  --cosmic-animation-pulse-fast: 1s;
+  --cosmic-animation-pulse-medium: 3s;
+  --cosmic-animation-pulse-slow: 5s;
+  --cosmic-animation-particle-fast: 6s;
+  --cosmic-animation-particle-medium: 8s;
+  --cosmic-animation-particle-slow: 10s;
+  
+  /* Z-Index Layers */
+  --cosmic-z-background: 0;
+  --cosmic-z-border: 1;
+  --cosmic-z-content: 2;
+  --cosmic-z-overlay-info: 800;
+  --cosmic-z-overlay-modal: 900;
+  
+  /* Shadow Effects */
+  --cosmic-shadow-small: 0 0 6px;
+  --cosmic-shadow-medium: 0 0 15px;
+  --cosmic-shadow-large: 0 0 25px;
+  --cosmic-shadow-hover: 0 0 20px;
+  
+  /* Background Sizes */
+  --cosmic-bg-size-small: 300% 300%;
+  --cosmic-bg-size-medium: 400% 400%;
+  --cosmic-bg-size-large: 500% 500%;
+}

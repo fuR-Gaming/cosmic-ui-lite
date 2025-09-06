@@ -1,0 +1,117 @@
+/* ========================================
+   COSMIC BUTTON COMPONENT
+   Futuristic button with SVG background and hover effects
+   ======================================== */
+
+/* ========================================
+   BUTTON WRAPPER
+   Container for button with positioning and transform effects
+   ======================================== */
+
+.cosmic-btn-wrapper {
+  position: relative;
+  display: inline-block;
+  transition: all var(--cosmic-transition-fast) ease;
+  margin-top: var(--cosmic-margin-small);
+}
+
+.cosmic-btn-wrapper:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(var(--cosmic-shadow-hover) var(--cosmic-primary-glow));
+}
+
+.cosmic-btn-wrapper:active {
+  transform: translateY(0);
+}
+
+/* ========================================
+   BUTTON SVG LAYERS
+   Background and border layers for cosmic effects
+   ======================================== */
+
+.cosmic-btn-bg,
+.cosmic-btn-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cosmic-btn-bg {
+  z-index: var(--cosmic-z-background);
+  background-size: var(--cosmic-bg-size-medium);
+  animation: particleFlash var(--cosmic-animation-particle-medium) ease-in-out infinite;
+}
+
+.cosmic-btn-border {
+  z-index: var(--cosmic-z-border);
+  filter: drop-shadow(var(--cosmic-shadow-small) var(--cosmic-glow-blue));
+  animation: cosmicPulse var(--cosmic-animation-pulse-medium) ease-in-out infinite alternate;
+}
+
+.cosmic-btn-bg path,
+.cosmic-btn-border path {
+  transition: fill var(--cosmic-transition-fast) ease, stroke var(--cosmic-transition-fast) ease;
+}
+
+/* ========================================
+   BUTTON CONTENT
+   The actual button element with text and interaction states
+   ======================================== */
+
+.cosmic-btn {
+  position: relative;
+  z-index: var(--cosmic-z-content);
+  background: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+  min-width: var(--cosmic-button-min-width);
+  min-height: var(--cosmic-button-min-height);
+  color: var(--cosmic-text-secondary);
+  font-size: var(--cosmic-font-base);
+  font-weight: var(--cosmic-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--cosmic-letter-spacing-tight);
+  cursor: pointer;
+  transition: all var(--cosmic-transition-fast) ease;
+}
+
+/* ========================================
+   BUTTON HOVER STATE
+   Text color and glow changes on hover
+   ======================================== */
+
+.cosmic-btn-wrapper:hover .cosmic-btn {
+  color: var(--cosmic-text-primary);
+  text-shadow: 0 0 10px var(--cosmic-primary);
+}
+
+/* ========================================
+   BUTTON VARIANTS
+   Different color schemes for different button types
+   ======================================== */
+
+.cosmic-btn.primary {
+  color: var(--cosmic-button-primary);
+}
+
+.cosmic-btn.secondary {
+  color: var(--cosmic-button-secondary);
+}
+
+.cosmic-btn.danger {
+  color: var(--cosmic-button-danger);
+}
+
+/* ========================================
+   BUTTON DISABLED STATE
+   Reduced interactivity and visual feedback for disabled buttons
+   ======================================== */
+
+.cosmic-btn:disabled {
+  cursor: not-allowed;
+  filter: brightness(0.5) contrast(0.8);
+  color: var(--cosmic-text-disabled);
+}

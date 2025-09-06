@@ -1,0 +1,182 @@
+/* ========================================
+   RESPONSIVE DESIGN MEDIA QUERIES
+   Mobile-first responsive design for all cosmic components
+   ======================================== */
+
+/* ========================================
+   HEIGHT-BASED RESPONSIVE ADJUSTMENTS
+   Progressive scaling for different screen heights
+   ======================================== */
+
+/* Medium height screens (small laptops, tablets in landscape) */
+@media (max-height: 520px) {
+  .cosmic-title-enhanced {
+    font-size: var(--cosmic-font-base);
+  }
+  
+  .cosmic-modal-body {
+    font-size: var(--cosmic-font-medium);
+  }
+  
+  .cosmic-btn-wrapper {
+    margin-top: 0;
+  }
+}
+
+/* Small height screens (mobile in landscape) */
+@media (max-height: 380px) {
+  .cosmic-title-enhanced {
+    font-size: var(--cosmic-font-medium);
+  }
+  
+  .cosmic-modal-body {
+    font-size: var(--cosmic-font-small);
+  }
+  
+  .cosmic-btn-wrapper {
+    scale: 0.8;
+  }
+}
+
+/* Very small height screens (mobile landscape, small windows) */
+@media (max-height: 280px) {
+  .cosmic-title-enhanced {
+    font-size: 0.7rem;
+  }
+  
+  .cosmic-modal-body {
+    padding: var(--cosmic-padding-small);
+    font-size: var(--cosmic-font-small);
+  }
+  
+  .cosmic-btn-wrapper {
+    scale: 0.7;
+  }
+  
+  .cosmic-modal-footer {
+    margin-bottom: 0;
+  }
+}
+
+/* Compact height - special handling for info wrapper */
+@media (max-height: 300px) {
+  .cosmic-info-wrapper {
+    transform: translateY(0) scale(0.75);
+  }
+
+  /* Override modal slide-in animation for extreme height constraints */
+  @keyframes modalSlideIn {
+    from {
+      transform: translateY(-50px) scale(0.65);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0) scale(0.75);
+      opacity: 1;
+    }
+  }
+}
+
+/* ========================================
+   WIDTH-BASED RESPONSIVE ADJUSTMENTS
+   Adaptations for narrow screens in portrait mode
+   ======================================== */
+
+/* Small mobile portrait screens */
+@media (max-width: 400px) and (orientation: portrait) {
+  .cosmic-modal-body {
+    padding: var(--cosmic-padding-medium);
+    font-size: 0.75rem;
+  }
+}
+
+/* Very small mobile portrait screens (older phones) */
+@media (max-width: 320px) and (orientation: portrait) {
+  .cosmic-info-wrapper {
+    min-width: 260px;
+  }
+}
+
+/* ========================================
+   COMBINED WIDTH/HEIGHT RESPONSIVE ADJUSTMENTS
+   Optimizations for small screens with limited space
+   ======================================== */
+
+/* Small screens with low height (mobile landscape, small tablets) */
+@media (max-width: 600px) and (max-height: 400px) {
+  .cosmic-modal-wrapper {
+    transform: scale(0.7);
+    font-size: var(--cosmic-font-medium);
+  }
+
+  .cosmic-modal-wrapper * {
+    font-size: 0.8em;
+  }
+
+  .cosmic-title-enhanced {
+    font-size: var(--cosmic-font-large);
+  }
+
+  .cosmic-modal-body {
+    padding: 8px var(--cosmic-padding-large);
+  }
+
+  .cosmic-info-wrapper {
+    transform: scale(0.7);
+    font-size: var(--cosmic-font-medium);
+  }
+
+  .cosmic-info-wrapper * {
+    font-size: 0.8em;
+  }
+
+  .cosmic-info-title {
+    font-size: var(--cosmic-font-large) !important;
+  }
+}
+
+/* ========================================
+   ORIENTATION-SPECIFIC ADJUSTMENTS
+   Different behaviors for portrait vs landscape modes
+   ======================================== */
+
+/* Landscape mode adjustments */
+@media (orientation: landscape) {
+  .cosmic-modal-wrapper {
+    max-height: 95vh;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY & HIGH DPI ADJUSTMENTS
+   Improvements for different accessibility needs and screen densities
+   ======================================== */
+
+/* High DPI screens - enhance effects for crisp displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .cosmic-btn-border,
+  .cosmic-card-border,
+  .cosmic-border {
+    filter: drop-shadow(var(--cosmic-shadow-small) var(--cosmic-primary-bright)) contrast(1.1);
+  }
+}
+
+/* Reduce motion for users who prefer less animation */
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-btn-wrapper,
+  .cosmic-card-wrapper,
+  .cosmic-modal-wrapper,
+  .cosmic-info-wrapper {
+    transition: none;
+    animation: none;
+  }
+  
+  .cosmic-bg,
+  .cosmic-border,
+  .cosmic-btn-bg,
+  .cosmic-btn-border,
+  .cosmic-card-bg,
+  .cosmic-card-border {
+    animation: none;
+  }
+}

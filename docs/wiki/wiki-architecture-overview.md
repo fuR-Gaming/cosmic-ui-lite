@@ -50,11 +50,12 @@ Deep dive into Cosmic UI Lite's technical architecture, design decisions, and sy
 ### Design Principles
 
 1. **Zero Dependencies** - Pure vanilla JavaScript/TypeScript
-2. **Modular Design** - Each component is self-contained
+2. **Modular Design** - Both component and CSS architecture are modular
 3. **SVG-Based** - Vector graphics for scalability
 4. **Performance First** - Optimized for 60fps animations
 5. **Type Safety** - Complete TypeScript support
 6. **Framework Agnostic** - Works with any framework or vanilla JS
+7. **Design System Driven** - CSS custom properties enable consistent theming
 
 ---
 
@@ -337,9 +338,84 @@ const observer = new IntersectionObserver((entries) => {
 
 ---
 
+## CSS Architecture
+
+### Modular CSS Structure
+
+Cosmic UI Lite now uses a modular CSS architecture for better maintainability and organization:
+
+```
+src/styles/
+├── cosmic-ui.css              # Main entry point with imports
+├── README.md                  # CSS architecture documentation  
+├── base/                      # Foundation styles
+│   ├── _variables.css         # CSS custom properties and design tokens
+│   ├── _shared.css           # Shared component styles and utilities
+│   └── _responsive.css       # Mobile-first responsive design
+├── animations/                # Animation and interaction effects
+│   ├── _keyframes.css        # All animation definitions
+│   └── _hover-effects.css    # Interactive hover states
+└── components/                # Individual component styles
+    ├── _button.css           # Button component styles
+    ├── _modal.css            # Modal component styles  
+    ├── _card.css             # Card component styles
+    ├── _info.css             # Info popup component styles
+    └── _tag.css              # Tag component styles
+```
+
+### CSS Custom Properties System
+
+```css
+/* CSS Design Tokens (_variables.css) */
+:root {
+  /* Color System */
+  --cosmic-primary: #00d4ff;
+  --cosmic-primary-glow: rgba(0, 212, 255, 0.3);
+  --cosmic-button-primary: #4da6ff;
+  --cosmic-button-secondary: #ff6b35;
+  --cosmic-button-danger: #ff4444;
+  
+  /* Spacing System */
+  --cosmic-button-min-width: 120px;
+  --cosmic-card-min-width: 300px;
+  --cosmic-padding-small: 4px;
+  --cosmic-padding-large: 20px;
+  
+  /* Animation System */
+  --cosmic-transition-fast: 0.3s;
+  --cosmic-animation-pulse-medium: 3s;
+  --cosmic-animation-particle-medium: 8s;
+}
+```
+
+### Build-Time CSS Processing
+
+The modular CSS is processed during build time using PostCSS:
+
+```javascript
+// CSS processing in rollup.config.js
+postcss({
+  extract: 'cosmic-ui.css',
+  minimize: production,
+  sourceMap: !production,
+  plugins: [
+    postcssImport({
+      path: ['src/styles', 'src/styles/base', 'src/styles/components', 'src/styles/animations']
+    })
+  ]
+})
+```
+
+**Processing Pipeline:**
+1. **Import Resolution** - `@import` statements are resolved and inlined
+2. **CSS Variable Processing** - Custom properties are optimized
+3. **Vendor Prefixing** - Auto-prefixes for browser compatibility
+4. **Minification** - CSS is compressed for production
+5. **Source Maps** - Generated for development debugging
+
 ## Build Pipeline
 
-### Rollup Configuration
+### Enhanced Rollup Configuration
 
 ```javascript
 // rollup.config.js
@@ -354,7 +430,11 @@ export default [
     },
     plugins: [
       typescript({ declaration: true, outDir: 'dist' }),
-      postcss({ extract: 'cosmic-ui.css', minimize: true })
+      postcss({ 
+        extract: 'cosmic-ui.css', 
+        minimize: true,
+        plugins: [postcssImport()] // NEW: Resolves CSS imports
+      })
     ]
   },
   
@@ -375,7 +455,7 @@ export default [
     output: {
       file: 'dist/index.umd.js',
       format: 'umd',
-      name: 'CosmicUILite',
+      name: 'CosmicUI', // Updated name
       sourcemap: true
     },
     plugins: [typescript(), terser()]

@@ -1,0 +1,96 @@
+/* ========================================
+   COSMIC INFO COMPONENT
+   Overlay popups with animated gradient titles and multiple color themes
+   ======================================== */
+
+/* ========================================
+   INFO WRAPPER
+   Main container for info popups with responsive sizing
+   ======================================== */
+
+.cosmic-info-wrapper {
+  position: relative;
+  max-width: var(--cosmic-modal-max-width);
+  min-height: var(--cosmic-modal-min-height);
+  max-height: 80vh;
+  cursor: default;
+  animation: modalSlideIn var(--cosmic-transition-medium) ease-out;
+  width: 50%;
+  min-width: var(--cosmic-info-min-width);
+}
+
+.cosmic-info-wrapper .cosmic-bg,
+.cosmic-info-wrapper .cosmic-border {
+  height: max(120%, 120px);
+}
+
+/* ========================================
+   INFO TITLE BASE STYLES
+   Animated gradient text effects with shimmer animation
+   ======================================== */
+
+.cosmic-info-title {
+  background: var(--cosmic-info-yellow) !important;
+  background-size: var(--cosmic-bg-size-medium) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: cosmicWinShimmer 2s ease-in-out infinite !important;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3) !important;
+  font-weight: var(--cosmic-font-weight-bold) !important;
+  letter-spacing: var(--cosmic-letter-spacing-wide) !important;
+  font-size: 1.2em !important;
+  transform: scale(1) !important;
+  transition: transform var(--cosmic-transition-fast) ease !important;
+}
+
+/* ========================================
+   INFO TITLE COLOR VARIANTS
+   Different gradient themes for various use cases
+   ======================================== */
+
+.cosmic-info-title.yellow {
+  background: var(--cosmic-info-yellow) !important;
+  background-size: var(--cosmic-bg-size-medium) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3) !important;
+}
+
+.cosmic-info-title.green {
+  background: var(--cosmic-info-green) !important;
+  background-size: var(--cosmic-bg-size-medium) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 20px rgba(0, 255, 65, 0.5), 0 0 40px rgba(0, 255, 65, 0.3) !important;
+}
+
+.cosmic-info-title.blue {
+  background: var(--cosmic-info-blue) !important;
+  background-size: var(--cosmic-bg-size-medium) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 20px rgba(0, 191, 255, 0.5), 0 0 40px rgba(0, 191, 255, 0.3) !important;
+}
+
+.cosmic-info-title.purple {
+  background: var(--cosmic-info-purple) !important;
+  background-size: var(--cosmic-bg-size-medium) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 20px rgba(153, 50, 204, 0.5),
+    0 0 40px rgba(153, 50, 204, 0.3) !important;
+}
+
+.cosmic-info-title.golden-red {
+  background: var(--cosmic-info-golden-red) !important;
+  background-size: var(--cosmic-bg-size-medium) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 20px rgba(255, 69, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3) !important;
+}

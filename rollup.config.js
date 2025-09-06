@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import { dts } from 'rollup-plugin-dts';
+import postcssImport from 'postcss-import';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -24,7 +25,12 @@ const baseConfig = {
     postcss({
       extract: 'cosmic-ui.css',
       minimize: production,
-      sourceMap: !production
+      sourceMap: !production,
+      plugins: [
+        postcssImport({
+          path: ['src/styles', 'src/styles/base', 'src/styles/components', 'src/styles/animations']
+        })
+      ]
     })
   ]
 };
