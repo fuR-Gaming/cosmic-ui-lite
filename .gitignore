@@ -70,3 +70,6 @@ temp/
 # Temporary wiki clone directory
 cosmic-ui-lite.wiki/
 temp-wiki/
+
+# Claude Code local settings
+.claude/settings.local.json
